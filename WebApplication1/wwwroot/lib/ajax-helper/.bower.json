@@ -1,0 +1,33 @@
+{
+  "name": "ajax-helper",
+  "version": "1.0.2",
+  "authors": [
+    "Nico Schneider <nico.tcap@gmail.com>"
+  ],
+  "description": "A simple AJAX helper that uses HTML5-data attributes.",
+  "main": "ajax-helper.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "ajax",
+    "jquery",
+    "helper",
+    "ajax-helper",
+    "html5"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1"
+  },
+  "homepage": "https://github.com/NicolasSchneider/ajax-helper",
+  "_release": "1.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.2",
+    "commit": "d9b09a20dd3fc4d177491c1aff36b50920215796"
+  },
+  "_source": "https://github.com/NicolasSchneider/ajax-helper.git",
+  "_target": "1.0.2",
+  "_originalSource": "ajax-helper"
+}

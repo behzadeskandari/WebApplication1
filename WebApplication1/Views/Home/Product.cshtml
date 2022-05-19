@@ -1,0 +1,894 @@
+﻿@model VmProductDetails
+
+
+@{
+    ViewBag.Title = "نمایش محصول";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.CurrentAskPage = Model.ListAsks.CurrentPage;
+    ViewBag.CurrentCommentPage = Model.ListComment.CurrentPage;
+}
+<style>
+    .TabHidden {
+        display: none;
+    }
+
+    .TecnicalProp ul li {
+        width: 100%;
+        margin: 5px;
+    }
+
+        .TecnicalProp ul li .TecnicalPropTitle {
+            float: right;
+            background-color: #bbbbbb;
+            color: #303030;
+            text-align: right;
+            padding: 5px;
+            height: 30px;
+        }
+
+        .TecnicalProp ul li .TecnicalPropValue {
+            float: left;
+            padding: 5px;
+            height: 30px;
+            background-color: #e0e0e0;
+            color: black;
+            text-align: right;
+        }
+
+    .CommentAvgTitle {
+        font-size: 12px;
+        text-align: right;
+    }
+
+    .RowComment {
+        margin: 5px;
+        float: right;
+        width: 100%;
+    }
+
+        .RowComment .col-md-2 {
+            padding-top: 5px;
+        }
+
+        .RowComment li {
+            margin-bottom: 15px;
+        }
+
+    .SingleCommet {
+        float: right;
+        width: 100%;
+        border-bottom: 2px solid #c1c1c1;
+        text-align: right;
+        direction: rtl;
+        border-radius: 5px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .BoxLike {
+        border: 1px solid #999;
+        border-radius: 3px;
+        padding: 5px;
+        margin: 5px;
+        text-align: center;
+        width: 50px;
+        height: 30px;
+        font-size: 12px;
+        float: left;
+    }
+
+    .Like {
+        background-color: #b4ff86;
+    }
+
+    .DisLike {
+        background-color: #ff8181;
+    }
+
+    .CommentHeader {
+        background-color: #e0e0e0;
+        float: right;
+        width: 100%;
+    }
+
+    .CommentBody {
+        margin: 5px;
+    }
+
+    .Paging {
+        margin: 20px;
+        float: right;
+        width: 100%;
+    }
+
+    .active a {
+        color: red;
+    }
+</style>
+
+<div class="col-md-12 col-sm-12 col-xs-12 ProductHeaderBlock">
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="col-md-12 ProductTitle" style="background-color:#e8e8e8;">
+            <div class="col-md-3 col-sm-3 hidden-xs">
+                @{
+                    for (int i = 1; i <= Model.Star; i++)
+                    {
+                        <i class="glyphicon glyphicon-star"></i>
+                    }
+                    for (int i = 1; i <= 5 - Model.Star; i++)
+                    {
+                        <i class="glyphicon glyphicon-star-empty"></i>
+                    }
+                }
+                <br />
+                <div>
+                    @Model.RatingAvg
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12 PTitle">
+                <div>
+                    @Model.TitleFa
+                </div>
+                <div>
+                    @Model.TitleEn
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-4 col-sm-4 col-xs-12 PTitleLeft">
+                <div class="ProductDetailsView">
+                    <ul>
+
+                        @foreach (var item in Model.ListTechnicalProperty.Take(4))
+                        {
+                            <li>
+                                <span>@item.Title</span><span>@item.Value</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="OtherProduct">
+                    <div class="OtherProductTitle">
+                        هدایای همراه این محصول
+                    </div>
+                    <div class="Gifts">
+                        <div>
+                            <div class="col-md-3">
+                                <img src="~/img/ProductImg/7.jpg" alt="Alternate Text" />
+                            </div>
+                            <div class="col-md-8">
+                                <span>
+                                    توضیحات مربوط به هدایای به این محصول
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-md-3">
+                                <img src="~/img/ProductImg/7.jpg" alt="Alternate Text" />
+                            </div>
+                            <div class="col-md-8">
+                                <span>
+                                    توضیحات مربوط به هدایای به این محصول
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-md-3">
+                                <img src="~/img/ProductImg/7.jpg" alt="Alternate Text" />
+                            </div>
+                            <div class="col-md-8">
+                                <span>
+                                    توضیحات مربوط به هدایای به این محصول
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12 PTitleRight">
+                <form action="/Home/ProductProp" data-ajax="true" data-ajax-loading="#LoadingID" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#ProductPrice" id="FormProperty" method="post">
+
+                    <input id="Property" type="hidden" name="Property" value="" />
+                    <input type="hidden" name="ProductID" value="@Model.ID" />
+                    @{
+                        int CounterProp = 0;
+                        int[] p = ((int[])ViewBag.PropertyList) ?? new int[] { 0 };
+                        string prArray = "";
+                        foreach (var item in p)
+                        {
+                            prArray += item + ",";
+                        }
+
+
+                    }
+                    <script>
+
+                        var PropArry = new Array(@prArray.Trim(new[] {',' }));
+
+                    </script>
+                    @foreach (var item in Model.ListProperty)
+                    {
+
+                        <div class="PTitleSection">
+                            <div class="PTitleSectionTitle">
+                                @item.Title
+                            </div>
+                            <div class="PTitleSectionBody">
+                                <ul>
+                                    @foreach (var itemp in item.ProductPropertyDetails)
+                                    {
+
+                                        <li class="liPropery">
+                                            <input @(p.Contains(itemp.ID) ? "checked='checked'" : "") onclick="ChangeArrayEl(@CounterProp,@itemp.ID);ChangeProp('@itemp.ID','@Model.ListAsks.CurrentPage','@Model.ListComment.CurrentPage');" type="radio" name="Prop@(item.ID)" value="@itemp.ID" />@itemp.PropName
+                                        </li>
+
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        CounterProp++;
+                    }
+
+
+                    <div class="PTitleSection">
+                        <div class="PTitleSectionTitle">
+                            انتخاب گارانتی
+                        </div>
+                        <div class="PTitleSectionBody">
+                            <select name="Garunty">
+                                <option value="1">@Model.GuruntyName</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="PTitleSection">
+                        <div class="PTitleSectionTitle">
+                            انتخاب فروشنده
+                        </div>
+                        <div class="PTitleSectionBody">
+                            <select name="Garunty">
+                                <option value="1">@Model.Author</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="PTitleSection">
+                        <div class="PTitleSectionTitle">
+                            قیمت
+                        </div>
+                        <div class="PTitleSectionBody">
+                            <div class="PriceSection">
+                                <div class="PriceChart">
+                                    <a href="/Home/PriceChart?TitleEn=@Model.TitleEn">
+                                        <img src="~/img/Chart.png" />
+                                    </a>
+                                </div>
+                                <div id="ProductPrice">
+                                    <div>
+                                        <span class="Price">@Model.SavePrice</span><span>تومان</span>
+                                    </div>
+
+                                    <div style="font-size:12px;color:#ff4c4c;">
+                                        قیمت کل: <span style="text-decoration:line-through;">@Model.Price</span><span>تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="PTitleSection">
+                    <div class="PTitleSectionTitle">
+
+                    </div>
+                    <div class="PTitleSectionBody">
+                        <div onclick="" class="BtnCompre col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12"><span><img style="height:43px;width:43px;" src="~/img/compare.png" /></span></div>
+                            <div onclick="location.href='/Home/Compree?TitleEn=@Model.TitleEn'" class="col-lg-9 col-md-9 hidden-xs hidden-sm">مقایسه</div>
+                        </div>
+                        <div onclick="" class="BtnAddToCart col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12"><span class="glyphicon glyphicon-shopping-cart"></span></div>
+                            <div class="col-lg-9 col-md-9 hidden-xs hidden-sm">افزودن به سبد خرید</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="dk-toolbar-warps">
+            <ul>
+                <li><a href="#"><span class="glyphicon glyphicon-share"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-heart-empty"></span></a></li>
+            </ul>
+            <div class="availability-image">
+                <img src="@Model.StatusImgUrl" alt="@Model.StatusTitle" title="@Model.StatusTitle" />
+            </div>
+        </div>
+        <div class="dk-products-image">
+            <img id="ProductImg" src="@Model.ListProductImg.FirstOrDefault().ImageUrl" alt="@Model.TitleFa" />
+        </div>
+        <div class="frmPnlProductGallery">
+            <ul>
+                @foreach (var item in Model.ListProductImg)
+                {
+                    <li><img onclick="LoadSlidePrImg('@item.ImageUrl')" src="@item.ImageUrl" alt="@Model.TitleFa" /></li>
+                }
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="BlockWithoutHeader col-md-12 col-sm-12 col-lg-12 col-xs-12">
+    <header>
+        معرفی اجمالی این محصول
+    </header>
+    <h2>
+        @Model.TitleFa
+    </h2>
+    <div style="text-align:right;direction:rtl;">
+        @Model.Text
+    </div>
+</div>
+
+
+
+
+<div class="col-md-12 ProductsBlock">
+    <div class="Block JustBlog col-md-12">
+        <div class="BodyBlockHeader">
+            <div class="col-md-6 col-sm-6 hidden-xs" style="text-align:left;">
+                @*<a class="hidden-xs" href="#">نمایش همه</a>*@
+
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 right" style="text-align:right;">
+                <div class="hidden-xs">محصولات مرتبط</div>
+                <a class="visible-xs">محصولات مرتبط</a>
+            </div>
+
+        </div>
+        <div class="BodyBlock">
+            <ul>
+                @foreach (var item in Model.ListOtherProduct)
+                {
+                    <li class="col-md-3 col-sm-4 col-xs-12">
+                        <a href="/home/Product/@item.TitleEn">
+                            <img src="@item.ImageUrl" alt="@item.Title" />
+                            <div>
+                                <div class="ProductTitle">@item.Title</div>
+                                <div class="ProductPrice" style="color:green;">
+                                    <span>@item.Price</span><span> تومان </span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12 ProductsBlock">
+    <div class="Block JustBlog col-md-12">
+        <div style="height:50px;padding-top:0px;" class="BodyBlockHeader">
+
+            <div class="col-md-12 col-sm-12 col-xs-12 right" style="text-align:right;padding:0px;">
+                <div class="Tabs">
+                    <ul>
+                        <li class="Tabs Active" id="Tab1" onclick="SetActive('Tab1')">
+                            <div>
+                                <span class=""><img src="~/img/Sketch-Book-icon.png" alt="Alternate Text" /></span>
+                                <span class="hidden-xs">نقد و برسی</span>
+                            </div>
+                        </li>
+                        <li class="Tabs" id="Tab2" onclick="SetActive('Tab2')">
+                            <div>
+                                <span class=""><img src="~/img/notepad-icon.png" alt="Alternate Text" /></span>
+                                <span class="hidden-xs">مشخصات فنی</span>
+                            </div>
+                        </li>
+                        <li class="Tabs" id="Tab3" onclick="SetActive('Tab3')">
+                            <div>
+                                <span class=""><img src="~/img/Sketch-Book-icon.png" alt="Alternate Text" /></span>
+                                <span class="hidden-xs">نظرات کاربران</span>
+                            </div>
+                        </li>
+                        <li class="Tabs" id="Tab4" onclick="SetActive('Tab4')">
+                            <div>
+                                <span class=""><img src="~/img/Sketch-Book-icon.png" alt="Alternate Text" /></span>
+                                <span class="hidden-xs">پرسش و پاسخ</span>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="BodyBlock">
+            <div class="Content">
+                <div class="TabData" id="DataTab1">
+                    @Html.Raw(Model.Evaluation)
+                </div>
+                <div class="TabHidden TabData TecnicalProp" id="DataTab2">
+                    <ul>
+                        @foreach (var item in Model.ListTechnicalProperty)
+                        {
+                            <li class="col-md-12">
+                                <div class="col-md-3 col-sm-4 col-xs-12 TecnicalPropTitle">@item.Title</div>
+                                <div class="col-md-9 col-sm-8 col-xs-12 TecnicalPropValue">@item.Value</div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div class="TabHidden TabData" id="DataTab3">
+                    <div class="col-md-6">
+                        <div id="MsgComment" class="panel panel-body">
+                            ثبت نظر در مورد : @Model.TitleFa
+                        </div>
+                        <form asp-action="AddComment" asp-controller="Home" data-ajax="true" data-ajax-method="POST" data-ajax-update="#MsgComment" data-ajax-loading="#LoadingID" data-ajax-mode="replace">
+                            <input type="hidden" name="ProductID" value="@Model.ID" />
+                            <div class="RowComment">
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" id="Title" name="Title" value="" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="Title">عنوان</label>
+                                </div>
+                            </div>
+                            <div class="RowComment">
+                                <div class="col-md-10">
+
+                                    <textarea class="form-control" id="Text" name="Text"></textarea>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="Title">متن</label>
+                                </div>
+                            </div>
+
+                            <div class="RowComment">
+                                <div class="col-md-10">
+                                    <div class="col-md-6">
+                                        <label>مزیت ها</label>
+                                        <textarea placeholder="جدا کننده با ," style="height:150px;" class="form-control" name="Best"></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>معایب</label>
+                                        <textarea placeholder="جدا کننده با ," style="height:150px;" class="form-control" name="Bad"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                            </div>
+                            <div class="RowComment">
+                                <ul>
+                                    <li>
+                                        <div style="text-align:right;" class="col-md-8">
+
+                                            @for (int i = 0; i <= 5; i++)
+                                            {
+                                                <span style="padding-left:15px;">
+                                                    <input type="radio" name="Item1" value="@i" /> @i
+                                                </span>
+                                            }
+
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            کیفیت ساخت
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="text-align:right;" class="col-md-8">
+
+                                            @for (int i = 0; i <= 5; i++)
+                                            {
+                                                <span style="padding-left:15px;">
+                                                    <input type="radio" name="Item2" value="@i" /> @i
+                                                </span>
+                                            }
+
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            نوآوری
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="text-align:right;" class="col-md-8">
+
+                                            @for (int i = 0; i <= 5; i++)
+                                            {
+                                                <span style="padding-left:15px;">
+                                                    <input type="radio" name="Item3" value="@i" /> @i
+                                                </span>
+                                            }
+
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            امکانات و قابلیت ها
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div style="text-align:right;" class="col-md-8">
+
+                                            @for (int i = 0; i <= 5; i++)
+                                            {
+                                                <span style="padding-left:15px;">
+                                                    <input type="radio" name="Item4" value="@i" /> @i
+                                                </span>
+                                            }
+
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            سهولت استفاده
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div style="text-align:right;" class="col-md-8">
+
+                                            @for (int i = 0; i <= 5; i++)
+                                            {
+                                                <span style="padding-left:15px;">
+                                                    <input type="radio" name="Item5" value="@i" /> @i
+                                                </span>
+                                            }
+
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            طراحی ظاهر
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="text-align:right;" class="col-md-8">
+
+                                            @for (int i = 0; i <= 5; i++)
+                                            {
+                                                <span style="padding-left:15px;">
+                                                    <input type="radio" name="Item6" value="@i" /> @i
+                                                </span>
+                                            }
+
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            ارزش خرید به نسبت قیمت
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="RowComment">
+                                <div style="text-align:left;" class="col-md-10">
+                                    <input class="btn btn-success" type="submit" value="ثبت نظر" />
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <ul>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@Model.ListComment.AvgItem1" aria-valuemin="0" aria-valuemax="100" style="width:@Model.ListComment.AvgItem1%">
+                                            @Model.ListComment.AvgItem1%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    کیفیت ساخت
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@Model.ListComment.AvgItem2" aria-valuemin="0" aria-valuemax="100" style="width: @Model.ListComment.AvgItem2%">
+                                            @Model.ListComment.AvgItem2%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    نوآوری
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@Model.ListComment.AvgItem3" aria-valuemin="0" aria-valuemax="100" style="width: @Model.ListComment.AvgItem3%">
+                                            @Model.ListComment.AvgItem3%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    امکانات و قابلیت ها
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@Model.ListComment.AvgItem4" aria-valuemin="0" aria-valuemax="100" style="width:@Model.ListComment.AvgItem4%">
+                                            @Model.ListComment.AvgItem4%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    سهولت استفاده
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@Model.ListComment.AvgItem5" aria-valuemin="0" aria-valuemax="100" style="width:@Model.ListComment.AvgItem5%">
+                                            @Model.ListComment.AvgItem5%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    طراحی ظاهر
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@Model.ListComment.AvgItem6" aria-valuemin="0" aria-valuemax="100" style="width:@Model.ListComment.AvgItem6%">
+                                            @Model.ListComment.AvgItem6%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    ارزش خرید به نسبت قیمت
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.PartialAsync("P_LstComment", Model.ListComment)
+                    </div>
+                </div>
+
+                <div class="TabHidden TabData" id="DataTab4">
+                    <div class="col-md-12">
+                        <div id="MsgAsk" class="panel panel-body">
+                            ثبت پرسش در مورد : @Model.TitleFa
+                        </div>
+                        <form asp-action="AddAsk" asp-controller="Home" data-ajax="true" data-ajax-method="POST" data-ajax-update="#MsgAsk" data-ajax-loading="#LoadingID" data-ajax-mode="replace">
+                            <input type="hidden" name="ProductID" value="@Model.ID" />
+                            <input type="hidden" id="AskID" name="AskID" value="0" />
+                            <div class="RowComment">
+                                <div class="col-md-10">
+                                    <input onclick="CancelAnsBtn()" style="display:none;" id="CancelAns" type="button" value="صرف نظر از پاسخ" />
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                            </div>
+                            <div class="RowComment">
+                                <div class="col-md-10">
+                                    <input style="margin:5px;padding:0px;display:inline;" class="checkbox" type="checkbox" id="Noti" name="Noti" value="true" />
+                                    مرا خبر کن
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                            </div>
+                            <div class="RowComment">
+                                <div class="col-md-10">
+
+                                    <textarea class="form-control" id="Text" name="Text"></textarea>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="Title">متن</label>
+                                </div>
+                            </div>
+                            <div class="RowComment">
+                                <div style="text-align:left;" class="col-md-10">
+                                    <input class="btn btn-success" type="submit" value="ثبت پرسش" />
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-12">
+                        @Html.PartialAsync("P_LstAsk", Model.ListAsks)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="BlockWithoutHeader col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+    <div>
+        <div class="Soure col-md-4 col-sm-4 co-xs-12">
+            <ul>
+                <li>
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <span style="float:left;height:10px;background-color:blue;width:100%;">&nbsp;</span>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">ارزش خريد به نسبت قيمت</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <span style="float:left;height:10px;background-color:blue;width:70%;">&nbsp;</span>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">ارزش خريد به نسبت قيمت</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4 col-sm-4 co-xs-12">
+            <div style="color:red;">
+                نقاط ضعف
+            </div>
+            <ul>
+                <li>
+                    انتن دهی کم
+                </li>
+                <li>
+                    باطری ضعیف
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4 col-sm-4 co-xs-12">
+            <div style="color:green;">
+                نقاط ضعف
+            </div>
+            <ul>
+                <li>
+                    ظاهر خوب
+                </li>
+                <li>
+                    صفحه نمایش خوب
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function SelectColor(idColor) {
+        $('input#' + idColor).prop('checked', 'checked');
+        //$('.Colors').removeClass("SelectedColor");
+        //$('div#' + idColor).addClass("SelectedColor");
+        $('.SelectedColorCheck').removeClass("SelectCheck");
+        $('span#' + idColor).addClass("SelectCheck");
+    }
+
+    function SetActive(id) {
+        $('.Tabs').removeClass("Active");
+        $('#' + id).addClass("Active");
+        $('.TabData').hide();
+        $('#Data'+id).show();
+        // Jquery Ajax
+
+    }
+
+    function ChangeProp(id,AskPage,CommentPage) {
+        $('#Property').val("");
+        var url = "@Model.TitleEn" + "?Garunty=1&&AskPage="+AskPage+"&&CommentPage="+CommentPage;
+        var LenArray = PropArry.length;
+        for (var i = 0; i < LenArray; i++) {
+            if (PropArry[i] != null) {
+                url += "&&Property=" + PropArry[i];
+                $('#Property').val($('#Property').val() + "," + PropArry[i]);
+
+            }
+
+        }
+
+        var par = { Title: "Prop", Url: url };
+        window.history.pushState(par, par.Title, par.Url);
+
+
+
+        $('#FormProperty').submit();
+    }
+
+    function ChangeArrayEl(Counter,Valu)
+    {
+        var CountProperty=@Model.ListProperty.Count();
+        PropArry[Counter] = Valu;
+        for (var i = 0; i < CountProperty; i++) {
+            if(PropArry[i]==null)
+            {
+                PropArry[i]=0;
+            }
+        }
+    }
+
+    function LoadSlidePrImg(imgUrl)
+    {
+        $('#ProductImg').attr('src',imgUrl);
+        $('#ProductImg').attr('onclick','SlideShowImage("'+imgUrl+'")');
+    }
+
+    function SlideShowImage(ImgUrl)
+    {
+        $('#SlideShowImg').attr('src',ImgUrl);
+        $('#PopUp').show();
+        $('#DarkLayout').show();
+    }
+    function ClosePopUp()
+    {
+        $('#PopUp').hide();
+        $('#DarkLayout').hide();
+    }
+    function CancelAnsBtn() {
+        $('#AskID').val('0');
+        $('#CancelAns').hide();
+    }
+    function AddToCart(ProductID) {
+        $.ajax({
+            url: '/home/AddtoCart',
+            type: 'POST',
+            dataType: 'json',
+            data: { ProductID: ProductID, Prop: $('#Property').val() },
+            error: function (err) {
+                alert(err.status + " " + err.text);
+            }
+        }).done(function (data) {
+            $('#CountAll').html(data.Count);
+            $('#TotalPrice').html(data.TotalPrice);
+            var Text = "";
+            $.each(data.ProductInCartVM, function (index, val) {
+                Text += "<tr><td>" + val.ID + "</td><td>" + val.Title + "</td><td>" + val.Price + "</td><td><input onblur='CahengeCartCount('" + val.ID + "')' type='number' id='PCount' name='PCount' value='" + val.Count + "' /></td><td><div onclick='RemoveCart('" + val.ID + "')'><i class='RomoveCart glyphicon glyphicon-remove'></i></div></td></tr>";
+            })
+            $('#CartItems').html(Text);
+        });
+    }
+</script>
+
+
+@section script{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/lib/ajax-helper/ajax-helper.js"></script>
+    <script src="~/js/EasyZoom/EasyZoom.js"></script>
+    <script>
+        jQuery(function ($) {
+
+            $('a.zoom').easyZoom();
+
+        });
+
+
+    </script>
+}
+
+<div onclick="ClosePopUp()" id="DarkLayout" class="DarkLayout"></div>
+<div onclick="ClosePopUp()" id="PopUp" class="PopUp">
+    <img onclick="ClosePopUp()" id="SlideShowImg" src="" />
+</div>
+

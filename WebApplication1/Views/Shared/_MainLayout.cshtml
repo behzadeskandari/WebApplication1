@@ -1,0 +1,241 @@
+﻿@{
+    MenuRepository RepMenu = new MenuRepository();
+    var Sitemap = (List<VmSiteMap>)ViewBag.SiteMap;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZankoTv.com</title>
+    <link rel="stylesheet" href="http://ifont.ir/apicode/38">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/StyleMain.css" rel="stylesheet" />
+    <script src="~/js/Unlimited-Multi-level-Dropdown-Menu-with-jQuery-easyMenu/jquery.easymenu.js"></script>
+    <script src="~/lib/pgwslider/pgwslider.js"></script>
+    <link href="~/lib/pgwslider/pgwslider.css" rel="stylesheet" />
+    @RenderSection("script", false)
+</head>
+<body>
+    <div class="col-md-12 col-sm-12 col-xs-12 BodyHeader">
+        <div id="" class="col-md-12 hidden-xs BodyHeader1"></div><!--BodyHeader1-->
+        <div class="col-md-4 col-sm-4 col-xs-12 left text-left">
+            <img src="~/img/Logo.png" alt="ZankoTV Logo" title="ZankoTV Logo" style="height:100px;" />
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12 right text-right">
+            <div class="col-md-12 text-right hidden-xs">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <i class="glyphicon glyphicon-user"></i>
+                    @(" " + User.Identity.Name + " خوش آمدید " )
+                    <form asp-area='' asp-controller='Account' asp-action='LogOff' method='post' id='logoutForm'>
+                        <input type='submit' value='خروج' />
+                    </form>
+
+                }
+                else
+                {
+                    <div class="col-md-7 col-sm-5">
+                        <div class="glyphicon glyphicon-user"></div>
+                        <a asp-controller="Home" asp-action="About">وارد شوید</a>
+                    </div>
+                    <div class="col-md-5 col-sm-7">
+                        <div class="glyphicon glyphicon-lock"></div>
+                        آیا عضو نیستید؟ <a asp-controller="Home" asp-action="About">عضو شوید</a> ...
+                    </div>
+                }
+
+                @*@if (User.IsAccess("Section1"))
+                    {
+                        <div>Hi</div>
+                    }*@
+
+            </div>
+
+            <div class="col-md-12 text-right visible-xs">
+                <div class="col-md-7 col-sm-5">
+                    <a href="#"><div class="glyphicon glyphicon-user"></div></a>
+                    <a href="#"><div class="glyphicon glyphicon-lock"></div></a>
+                    <a href="#"><div class="glyphicon glyphicon-shopping-cart"></div></a>
+                </div>
+            </div>
+            <div class="col-md-12 text-right" style="margin-top:10px;">
+                <div class="col-md-9 col-xs-12 right" style="float:right !important;">
+                    <button onclick="LoadShopingCart()" class="btn btn-success col-md-3 col-sm-3 hidden-xs" style="height:40px">
+                        سبد خرید (<span id="CountAll"></span>)
+                    </button>
+
+                    <input class="txtSearch col-md-9 col-sm-9 col-xs-12" type="text" name="Search" value="" placeholder="متن مورد جستوجو را وارد نمایید..." />
+
+                </div>
+                @*<div class="col-md-3 col-xs-12 right">
+
+                    </div>*@
+
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 TopMenu">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toogle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">
+                        <span>ZankoTv</span>
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        @*<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">صفحه ی اصلی</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">صفحه ی دوم</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">صفحه ی اول</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">تماس با ما</a>
+                            </li>
+                            <li>
+                                <a href="#">درباره ی ما</a>
+                            </li>*@
+                        @{
+                            foreach (var item in RepMenu.GetMenu())
+                            {
+                                <li class='@(RepMenu.HasChildMenu(item.ID)? "dropdown":"")'>
+                                    <a href='@(!RepMenu.HasChildMenu(item.ID)? "/Home/Category/"+item.SeoLink:"#")' @(RepMenu.HasChildMenu(item.ID) ? "class=dropdown-toggle data-toggle=dropdown role=button aria-haspopup=true aria-expanded=false" : null)>@item.Title</a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var itemChild in RepMenu.GetMenu(item.ID))
+                                        {
+                                            <li>
+                                                <a href="/Home/Category/@itemChild.SeoLink">@itemChild.Title</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 BodyB">
+        <div class="col-md-12 col-sm-12 hidden-xs PageMap">
+            <ul>
+                @foreach (var item in Sitemap)
+                {
+                    <li>
+                        <a href="@item.Link">@item.Title</a> &gt; &nbsp;
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+        @RenderBody()
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 BodyFoter">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div style="text-align:right;margin-bottom:10px;border-bottom:1px solid #cacaca;padding:5px;font-family:'B Yekan',Tahoma;font-size:16px;">
+                خبرنامه
+            </div>
+            <div class="NewsLetter">
+                <form action="/" method="post">
+                    <input type="text" name="Email" value="" placeholder="News Letter" />
+                    <input class="btn btn-success" type="submit" value="ارسال" />
+                    <input class="btn btn-danger" type="reset" value="از نو" />
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div style="text-align:right;margin-bottom:10px;border-bottom:1px solid #cacaca;padding:5px;font-family:'B Yekan',Tahoma;font-size:16px;">
+                منو ی اصلی
+            </div>
+            <div style="">
+                <ul>
+                    <li>
+                        <a href="#">صفخه ی اصلی</a>
+                    </li>
+                    <li>
+                        <a href="#">عضویت</a>
+                    </li>
+                    <li>
+                        <a href="#">ورود به سایت</a>
+                    </li>
+                    <li>
+                        <a href="#">نقشه ی سایت</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Cart">
+        <div class="ShpingCart col-lg-9 col-md-9 col-sm-9 hidden-xs">
+            <div class="CartHeader col-md-12 col-sm-12">
+                <div style="text-align:left;direction:ltr;" class="col-md-11 col-sm-11">Your Shoping Cart...</div>
+                <div class="col-md-1 col-sm-1">
+                    <img style="cursor:pointer;" onclick="LoadShopingCart()" src="~/img/Close.png" alt="Alternate Text" />
+                </div>
+            </div>
+            <div id="ShopingCart">
+                <div class="CartItems">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>شماره ی محصول</th>
+                                <th>عنوان محصول</th>
+                                <th>قیمت(ریال)</th>
+                                <th>تعداد</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="CartItems">
+                            <tr>
+                                <td>1020</td>
+                                <td>خودکار Bic</td>
+                                <td>1000</td>
+                                <td><input onblur="CahengeCartCount('1')" type="number" id="PCount" name="PCount" value="1" /></td>
+                                <td><div onclick="RemoveCart('1')"><i class="RomoveCart glyphicon glyphicon-remove"></i></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cartFooter">
+                    <div><span>قیمت کل: </span><span><span id="TotalPrice">2000</span> تومان</span></div>
+                    <div>
+                        <input onclick="" class="btn btn-success" type="button" value="نهایی کردن" />
+                        <input onclick="" class="btn btn-warning" type="button" value="خالی کردن" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="DarkAria">
+
+    </div>
+
+    <script>
+        $("#menu").easymenu();
+        $(document).ready(function () {
+            $('.pgwSlider').pgwSlider();
+        });
+
+        function LoadShopingCart() {
+            $('.DarkAria').toggle();
+            $('.ShpingCart').toggle();
+        }
+
+    </script>
+</body>
+</html>

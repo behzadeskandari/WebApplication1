@@ -1,0 +1,936 @@
+﻿body {
+    direction: rtl;
+    text-align: right;
+    background-color: #e0e0e0;
+}
+
+.Test {
+    background-color: red;
+    height: 35px;
+}
+
+.BodyHeader {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'B yekan',Tahoma !important;
+    font-size: 16px;
+    color: black;
+    min-height: 220px;
+    background-color: white;
+    border-bottom: 1px solid #c1c1c1;
+}
+
+.BodyHeader1 {
+    height: 70px;
+    background-image: url('../img/Blue.png');
+    background-repeat: repeat-x;
+}
+
+.BodyB {
+}
+
+.BodyFoter {
+}
+
+.txtSearch {
+    border-radius: 3px;
+    border: 1px solid #c1c1c1;
+    height: 40px;
+    background-image: url('../img/Search.png');
+    background-repeat: no-repeat;
+    background-position-x: left;
+    background-position-y: center;
+    padding-left: 35px;
+    float: right !important;
+}
+
+
+a {
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+    a:hover {
+    }
+
+/*.HeaderMenu {
+    background-color:#d3d3d3;
+    height:40px;
+    border-bottom:2px solid #c1c1c1;
+    border-top:1px solid #dedede;
+}
+
+.HeaderMenu ul li{
+    float:right;
+    margin-left:10px;
+    width:100px;
+    list-style:none;
+    margin-top:5px;
+    padding:5px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.HeaderMenu ul li:hover{
+    background-color:#e0e0e0;
+    
+}*/
+
+
+#menu {
+    list-style: none;
+    position: relative;
+    background: #f1f1f1;
+    direction: rtl;
+    text-align: right;
+    float: right;
+}
+
+    #menu a {
+        font-size: 12px;
+        display: block;
+        white-space: nowrap;
+        color: #000;
+        padding: 10px 0;
+        text-decoration: none;
+        z-index: 1000;
+    }
+
+        #menu a:hover {
+            text-decoration: underline;
+        }
+
+    #menu li.main-item {
+        float: right;
+        list-style: none;
+    }
+
+        #menu li.main-item a {
+            color: #000;
+        }
+
+            #menu li.main-item a:hover, #menu li.main-item.hover a {
+                color: #fff;
+            }
+
+        #menu li.main-item ul li.sub-item a, #menu li.main-item ul li.sub-item a:hover {
+            color: #000;
+            padding: 0px 5px 0px 10px;
+        }
+
+    #menu li {
+        padding: 5px;
+        list-style: none;
+        z-index: 1001;
+        text-align: right !important;
+        direction: rtl !important;
+        float: right;
+    }
+
+        #menu li.hover {
+            background: #316ac5;
+        }
+
+        #menu li ul {
+            display: none;
+            position: absolute;
+            background: #f1f1f1;
+            border: 1px solid #999;
+            padding: 2px;
+            z-index: 1002;
+        }
+
+            #menu li ul li {
+                line-height: 22px;
+                margin: 0;
+                padding: 0px;
+                border: 1px solid #f1f1f1;
+                z-index: 1003;
+            }
+
+                #menu li ul li.separator {
+                    line-height: 0;
+                    height: 0;
+                    font-size: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    background: none;
+                    border-top: 1px solid #e0e0e0;
+                    border-bottom: 1px solid #fff;
+                }
+
+                #menu li ul li.hover {
+                    background: #edf2f7;
+                    border: 1px solid #aecff7;
+                }
+
+        #menu li.main-item ul li.sub-item.has-child {
+            background: url(arrow.gif) no-repeat right center #edf2f7;
+        }
+
+        #menu li ul li.has-child.hover {
+            border: 1px solid #aecff7;
+        }
+
+.Top-Ads {
+    margin: 5px;
+}
+
+    .Top-Ads img {
+        border: 1px solid #c1c1c1;
+        border-radius: 5px;
+    }
+
+.LeftBlock {
+    /*background-color: red;*/
+}
+
+.RightBlock {
+    /*background-color: green;*/
+}
+
+.dk-services-feature {
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    background-color: #edf2f7;
+    vertical-align: middle;
+    padding-top: 15px;
+    margin-top: 5px;
+}
+
+
+    .dk-services-feature ul li {
+        list-style: none;
+        float: right;
+        font-family: 'B Yekan',Tahoma;
+        margin-right: 30px;
+    }
+
+.Block {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    padding: 0px !important;
+    background-color: white;
+}
+
+    .Block .BlockHeader {
+        height: 35px;
+        background-color: #edf2f7;
+        padding-top: 10px;
+        text-align: center;
+        font-family: 'B Yekan',Tahoma;
+    }
+
+    .Block .BlockBody {
+        margin: 5px;
+        font-family: 'B Yekan',Tahoma;
+        text-align: right;
+        direction: rtl;
+        background-color: white;
+    }
+
+    .Block .BlockFooter {
+        text-align: left;
+        margin: 5px;
+        height: 30px;
+        padding: 10px;
+        font-family: Tahoma;
+        font-size: 12px;
+    }
+
+.Block {
+    font-family: 'B Yekan',Tahoma;
+    direction: rtl;
+    text-align: right;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    float: right;
+    width: 100%;
+    padding-bottom: 5px !important;
+}
+
+.brands {
+    background-color: inherit !important;
+}
+
+    .brands div {
+        list-style: none;
+        margin-right: 5px;
+        float: right;
+        width: 48%;
+        height: 100px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        border: 2px solid #dbdbdb;
+        background-color: white;
+    }
+
+        .brands div img {
+            width: 98%;
+            margin: 3px;
+            height: 90px;
+        }
+
+
+.BodyBlockHeader {
+    text-align: center;
+    height: 40px;
+    padding-top: 10px;
+    background-color: #edf2f7;
+}
+
+.BodyBlock {
+    padding: 5px;
+}
+
+.ProductsBlock {
+    padding: 0px !important;
+}
+
+.BodyBlock ul li {
+    padding: 5px;
+    list-style: none;
+    text-align: center;
+}
+
+    .BodyBlock ul li a img {
+        width: 80%;
+    }
+
+.BodyFoter {
+    width: 100%;
+    background-color: #edf2f7;
+}
+
+    .BodyFoter ul li {
+        list-style: none;
+        font-family: 'B Yekan',Tahoma;
+    }
+
+.NewsLetter input[type=text] {
+    width: 98%;
+    height: 35px;
+    padding: 5px;
+    font-family: 'B Yekan',Tahoma;
+    direction: ltr;
+    text-align: left;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid #6cebfc;
+}
+
+.NewsLetter input[type=submit] {
+    font-family: Tahoma;
+}
+
+.NewsLetter input[type=reset] {
+    font-family: Tahoma;
+}
+
+.PageMap {
+    height: 40px;
+    background-color: white;
+    color: black;
+    font-family: 'B Yekan',Tahoma;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 2px solid #dbdbdb;
+}
+
+    .PageMap ul li {
+        list-style: none;
+        float: right;
+        margin-left: 15px;
+        font-size: 8px;
+        color: #002cff;
+    }
+
+        .PageMap ul li a {
+            color: black;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+.ProductHeaderBlock {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #dbdbdb;
+    margin-bottom: 5px;
+}
+
+.dk-toolbar-warps ul li {
+    float: left;
+    list-style: none;
+    margin: 5px;
+    font-size: 16px;
+}
+
+    .dk-toolbar-warps ul li a {
+        color: #c1c1c1;
+    }
+
+.availability-image {
+    width: 40%;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+    .availability-image img {
+        width: 100%;
+    }
+
+.dk-products-image img {
+    width: 100%;
+}
+
+.frmPnlProductGallery ul li {
+    float: right;
+    margin-left: 5px;
+    border: 2px solid #e0e0e0;
+    width: 20%;
+    list-style: none;
+}
+
+    .frmPnlProductGallery ul li img {
+        width: 100%;
+    }
+
+.ProductTitle {
+    padding: 10px;
+    height: 60px;
+    font-family: 'B Yekan';
+}
+
+    .ProductTitle .PTitle div:nth-child(1) {
+        font-size: 18px !important;
+    }
+
+    .ProductTitle .PTitle div:nth-child(2) {
+        font-size: 12px;
+    }
+
+.StarsOn {
+    background-image: url('../img/stars.png');
+    background-repeat: repeat-x;
+    height: 15px;
+    width: 100px;
+    direction: ltr;
+    text-align: left;
+    float: left;
+}
+
+.PTitleSection {
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
+    float: right;
+}
+
+.PTitleSectionTitle {
+    width: 100%;
+    margin-bottom: 5px;
+    font-family: 'B Yekan',Tahoma;
+    font-weight: 900;
+}
+
+.PTitleSectionBody ul li {
+    float: right;
+    margin-left: 15px;
+    list-style: none;
+}
+
+    .PTitleSectionBody ul li div {
+        border: 1px solid #e0e0e0;
+        padding: 3px;
+        width: 100px;
+        height: 40px;
+        border-radius: 3px;
+        background-color: #f8f8f8;
+    }
+
+.SelectedColor {
+    background-color: aqua !important;
+}
+
+.Colors {
+}
+
+    .Colors span {
+        font-family: 'B Yekan',Tahoma;
+        margin-right: 5px;
+        margin-top: 25px;
+    }
+
+.SelectedColorCheck {
+    border: 1px solid #c1c1c1;
+    border-radius: 30px;
+    height: 15px;
+    width: 15px;
+}
+
+
+.SelectCheck {
+    background-image: url('../img/Check.png');
+}
+
+.PTitleSectionBody select {
+    width: 98%;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-family: 'B Yekan',Tahoma;
+}
+
+.Price {
+    color: green;
+}
+
+.PriceSection div {
+    font-family: 'B Yekan',Tahoma;
+    font-size: 16px;
+    padding-right: 5px;
+    padding-top: 5px;
+    float: right;
+}
+
+.PriceSection {
+    margin-right: 20px;
+}
+
+.PriceChart a {
+    border: 1px solid #e0e0e0;
+    padding: 5px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.BtnAddToCart {
+    height: 45px;
+    background-color: #25e000;
+    text-align: center;
+    font-family: 'B Yekan',Tahoma;
+    font-size: 16px;
+    padding: 0px !important;
+    border-radius: 5px;
+    border: 1px solid #70ff00;
+    cursor: pointer;
+}
+
+    .BtnAddToCart:hover {
+        background-color: #28f500;
+    }
+
+    .BtnAddToCart div {
+        float: right;
+    }
+
+        .BtnAddToCart div:nth-child(1) {
+            height: 44px;
+            font-size: 35px;
+            background-color: rgba(0, 128, 0, 0.31);
+        }
+
+        .BtnAddToCart div:nth-child(2) {
+            text-align: center;
+            height: 44px;
+            padding-top: 10px;
+        }
+
+
+
+.BtnCompre {
+    height: 45px;
+    background-color: #e8e8e8;
+    text-align: center;
+    font-family: 'B Yekan',Tahoma;
+    font-size: 16px;
+    padding: 0px !important;
+    border-radius: 5px;
+    border: 1px solid #efefef;
+    cursor: pointer;
+}
+
+    .BtnCompre:hover {
+        background: #f2f2f2;
+    }
+
+    .BtnCompre div {
+        float: right;
+    }
+
+        .BtnCompre div:nth-child(1) {
+            height: 44px;
+            font-size: 35px;
+            background-color: rgba(212, 212, 212, 0.42);
+        }
+
+        .BtnCompre div:nth-child(2) {
+            text-align: center;
+            height: 44px;
+            padding-top: 10px;
+        }
+
+.ProductDetailsView {
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+    .ProductDetailsView ul li span {
+        font-family: 'B Yekan',Tahoma;
+        font-size: 12px;
+    }
+
+        .ProductDetailsView ul li span:nth-child(2) {
+            color: #c1c1c1;
+            padding-right: 5px;
+        }
+
+.OtherProduct {
+}
+
+    .OtherProduct .OtherProductTitle {
+        font-family: 'B Yekan',Tahoma;
+        font-size: 16px;
+        background-image: url('../img/Gift.png');
+        background-position: right;
+        padding-right: 26px;
+        background-repeat: no-repeat;
+        color: #999;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #999;
+    }
+
+.Gifts div {
+    margin-top: 5px;
+    font-family: 'B Yekan',Tahoma;
+    float: right;
+}
+
+    .Gifts div div:nth-child(1) {
+        float: right;
+        padding: 5px;
+        border: 1px solid #c1c1c1;
+        margin-left: 5px;
+        text-align: center;
+    }
+
+    .Gifts div div:nth-child(2) {
+        float: left;
+        padding: 5px;
+        text-align: right;
+        direction: rtl;
+        font-size: 12px;
+    }
+
+.BlockWithoutHeader {
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+    font-family: 'B Yekan',Tahoma;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 2px solid #e0e0e0;
+}
+
+    .BlockWithoutHeader header {
+        font-size: 20px;
+    }
+
+    .BlockWithoutHeader h2 {
+        font-size: 14px;
+        color: #999;
+    }
+
+    .BlockWithoutHeader div {
+        font-size: 12px;
+        margin-top: 30px;
+        line-height: 30px;
+        text-align: justify;
+    }
+
+.Tabs {
+    float: right;
+}
+
+    .Tabs ul {
+        float: right;
+        padding: 0px;
+    }
+
+        .Tabs ul li {
+            float: right;
+            list-style: none;
+            text-align: center;
+            background-color: inherit;
+            height: 50px;
+            border-left: 2px solid #c1c1c1;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .Tabs ul .Active {
+            background-color: white;
+            border-bottom: 1px solid white;
+            border-top: 4px solid #0062ff;
+        }
+
+        .Tabs ul li span:nth-child(2) {
+            margin-right: 5px;
+        }
+
+.Soure ul {
+    padding: 0px;
+}
+
+    .Soure ul li {
+        list-style: none;
+        direction: rtl;
+        text-align: right;
+        height: 20px;
+    }
+
+.Soure .row div {
+    margin-top: 0px;
+}
+
+#easy_zoom {
+    width: 600px;
+    height: 400px;
+    border: 5px solid #eee;
+    background: #fff;
+    color: #333;
+    position: absolute;
+    top: 60px;
+    left: 400px;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 10px #777;
+    -webkit-box-shadow: 0 0 10px #777;
+    box-shadow: 0 0 10px #777;
+    /* vertical and horizontal alignment used for preloader text */
+    line-height: 400px;
+    text-align: center;
+}
+
+.TopMenu {
+    margin: 5px;
+}
+
+.dropdown-menu > li > a {
+    text-align: right;
+}
+
+.navbar ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.dropdown-menu {
+    margin-right: 10px !important;
+}
+
+.DarkAria {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: #242424;
+    opacity: .5;
+    z-index: 10000;
+    display: none;
+}
+
+.ShpingCart {
+    position: fixed;
+    height: 300px;
+    background-color: white;
+    top: 20%;
+    left: 13%;
+    z-index: 10001;
+    display: none;
+}
+
+.CartHeader {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.CartItems {
+    font-family: 'B Yekan';
+    font-size: 12px;
+    height: 180px;
+    float: right;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+    .CartItems th {
+        text-align: center;
+        background-color: #e0e0e0;
+        border-left: 1px solid #c1c1c1;
+    }
+
+    .CartItems td {
+        text-align: right;
+        background-color: #f3f3f3;
+        border-left: 1px solid #c1c1c1;
+    }
+
+.cartFooter div:nth-child(1) {
+    font-family: 'B Yekan';
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+    .cartFooter div:nth-child(1) span {
+        margin: 5px;
+    }
+
+        .cartFooter div:nth-child(1) span:nth-child(2) {
+            color: #ff8282;
+        }
+
+.cartFooter div:nth-child(2) {
+    font-family: 'B Yekan';
+    font-size: 12px;
+}
+
+
+.liPropery {
+    padding: 10px;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+    font-family: Tahoma;
+}
+
+.PopUp {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    width: 80%;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000000;
+    display: none;
+}
+
+.DarkLayout {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background-color: rgba(144, 144, 144, 0.37);
+    z-index: 999999;
+    display: none;
+}
+
+.TabHidden {
+    display: none;
+}
+
+.TecnicalProp ul li {
+    width: 100%;
+    margin: 5px;
+}
+
+    .TecnicalProp ul li .TecnicalPropTitle {
+        float: right;
+        background-color: #bbbbbb;
+        color: #303030;
+        text-align: right;
+        padding: 5px;
+        height: 30px;
+    }
+
+    .TecnicalProp ul li .TecnicalPropValue {
+        float: left;
+        padding: 5px;
+        height: 30px;
+        background-color: #e0e0e0;
+        color: black;
+        text-align: right;
+    }
+
+.CommentAvgTitle {
+    font-size: 12px;
+    text-align: right;
+}
+
+.RowComment {
+    margin: 5px;
+    float: right;
+    width: 100%;
+}
+
+    .RowComment .col-md-2 {
+        padding-top: 5px;
+    }
+
+    .RowComment li {
+        margin-bottom: 15px;
+    }
+
+.SingleCommet {
+    float: right;
+    width: 100%;
+    border-bottom: 2px solid #c1c1c1;
+    text-align: right;
+    direction: rtl;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.BoxLike {
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    font-size: 12px;
+    float: left;
+}
+
+.Like {
+    background-color: #b4ff86;
+}
+
+.DisLike {
+    background-color: #ff8181;
+}
+
+.CommentHeader {
+    background-color: #e0e0e0;
+    float: right;
+    width: 100%;
+}
+
+.CommentBody {
+    margin: 5px;
+}
+
+.Paging {
+    margin: 20px;
+    float: right;
+    width: 100%;
+}
+
+.active a {
+    color: red;
+}

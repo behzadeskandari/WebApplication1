@@ -1,0 +1,180 @@
+﻿@using UtilitySpace
+@model LstComment
+<style>
+    .Paging{
+        margin: 20px;
+        padding: 10px;
+        float: right;
+        width: 100%;
+    }
+</style>
+<ul>
+    @foreach (var item in Model.Comments)
+    {
+
+        <li>
+            <div class="SingleCommet">
+                <div class="CommentHeader">
+
+                    <div class="col-md-6 col-xs-12">
+                        <div class="BoxLike Like">
+                            <a href="/Home/CommLike?ID=@item.ID" id="Like@(item.ID)" data-ajax="true" data-ajax-loading="#LoadingID" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#Like@(item.ID)">
+                                @item.Like
+                            </a>
+                        </div>
+                        <div class="BoxLike DisLike">
+                            <a href="/Home/CommDisLike?ID=@item.ID" id="DisLike@(item.ID)" data-ajax="true" data-ajax-loading="#LoadingID" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#DisLike@(item.ID)">
+                                @item.DisLike
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div>@item.Name</div>
+                        <div style="font-size:10px;color:#bebebe;">@item.Date</div>
+                    </div>
+                </div>
+                <div class="col-md-12 CommentBody">
+                    <div class="col-md-7 col-xs-12">
+                        <div class="col-md-12" style="margin-bottom:20px;">
+                            @item.Title
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div style="color:red;">نقاط ضعف</div>
+                                <div>
+                                    <ul>
+                                        @foreach (var itemBad in item.Bad.Split(','))
+                                        {
+                                            <li>@itemBad</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="color:green;">نقاط قوت</div>
+                                <div>
+                                    <ul>
+                                        @foreach (var itemBest in item.Best.Split(','))
+                                        {
+                                            <li>@itemBest</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12" style="margin-top:30px;">
+                            @Html.Raw(item.Text)
+                        </div>
+                    </div>
+
+                    @* Progress *@
+                    <div class="col-md-5 col-xs-12">
+                        <ul>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@item.Item1" aria-valuemin="0" aria-valuemax="5" style="width:@(item.Item1*20)%">
+                                            @item.Item1%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    کیفیت ساخت
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@item.Item2" aria-valuemin="0" aria-valuemax="5" style="width:@(item.Item2*20)%">
+                                            @item.Item2%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    نوآوری
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@item.Item3" aria-valuemin="0" aria-valuemax="5" style="width:@(item.Item3*20)%">
+                                            @item.Item3%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    امکانات و قابلیت ها
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@item.Item4" aria-valuemin="0" aria-valuemax="5" style="width:@(item.Item4*20)%">
+                                            @item.Item4%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    سهولت استفاده
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@item.Item5" aria-valuemin="0" aria-valuemax="5" style="width:@(item.Item5*20)%">
+                                            @item.Item5%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    طراحی ظاهر
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-9 col-sm-8 col-xs-12 CommentAvgProg">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                             aria-valuenow="@item.Item6" aria-valuemin="0" aria-valuemax="5" style="width:@(item.Item6*20)%">
+                                            @item.Item6%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-12 CommentAvgTitle">
+                                    ارزش خرید به نسبت قیمت
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+    }
+</ul>
+
+<div class="Paging">
+    <div class="container">
+        <ul class="pager">
+            @{
+                for (int i = Model.CurrentPage <= 5 ? 1 : Model.CurrentPage - 5;
+                    i <= (Model.CountAllPage - 5 >= Model.CurrentPage ? Model.CurrentPage + 5 : Model.CurrentPage + (Model.CountAllPage - Model.CurrentPage));
+                    i++)
+                {
+                    @*<li class="@(Model.CurrentPage==i?"Active":"")"><a href="@(((string)(ViewBag.CurrentUrl)).Replace(Pattern:"&&CommentPage=([0-9]*)",NewValue:"")+"&&CommentPage="+i)">@i</a></li>*@
+                    <li class="@(Model.CurrentPage==i?"active":"")"><a onclick="ChangeProp('1','@ViewBag.CurrentAskPage','@i');location.reload();">@i</a></li>
+                }
+            }
+            <li>
+                <a href="#">2</a>
+            </li>
+        </ul>
+
+    </div>
+</div>

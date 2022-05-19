@@ -1,0 +1,102 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model LstAsks
+<style>
+    .AskSection {
+        width: 100%;
+        min-height: 50px;
+        background-color: #e0e0e0;
+        color: #000000;
+        direction: rtl;
+        text-align: right;
+        padding: 10px;
+    }
+
+    .AnswerSection {
+        border-bottom: 1px solid #c1c1c1;
+        margin: 10px;
+        margin-bottom: 20px;
+    }
+</style>
+<ul>
+    @foreach (var item in Model.Asks.Where(a => a.AskID == 0))
+    {
+
+        <li>
+            <div class="SingleCommet">
+                <div class="CommentHeader">
+
+                    <div class="col-md-6 col-xs-12">
+                        <div class="BoxLike Like">
+                            <a href="/Home/CommLike?ID=@item.ID" id="Like@(item.ID)" data-ajax="true" data-ajax-loading="#LoadingID" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#Like@(item.ID)">
+                                @item.Like
+                            </a>
+                        </div>
+                        <div class="BoxLike DisLike">
+                            <a href="/Home/CommDisLike?ID=@item.ID" id="DisLike@(item.ID)" data-ajax="true" data-ajax-loading="#LoadingID" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#DisLike@(item.ID)">
+                                @item.DisLike
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div> توسط: @item.Name</div>
+                        <div style="font-size:10px;color:#bebebe;">@item.Date</div>
+                    </div>
+                </div>
+                <div class="col-md-12 CommentBody">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="AskSection">
+                            @item.Text
+                        </div>
+                        @foreach (var itemAns in new ProductRepository().GetChildAsk(item.ID))
+                        {
+                            <div class="AnswerSection">
+                                <div>
+                                    پاسخ دهنده: @itemAns.TblUser.Name در تارِیخ: @itemAns.Date
+                                </div>
+                                <div>
+                                    @itemAns.Text
+                                </div>
+                            </div>
+                        }
+                        <div>
+                            <input class="btn btn-success btn-sm" type="button" onclick="AnswerTo('@item.ID')" value="پاسخ" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+
+
+    }
+</ul>
+<div class="Paging">
+    <div class="container">
+        <ul class="pager">
+            @{
+                for (int i = Model.CurrentPage <= 5 ? 1 : Model.CurrentPage - 5;
+                    i <= (Model.CountAllPage - 5 >= Model.CurrentPage ? Model.CurrentPage + 5 : Model.CurrentPage + (Model.CountAllPage - Model.CurrentPage));
+                    i++)
+                {
+                    @*<li class="@(Model.CurrentPage==i?"Active":"")"><a href="@(((string)(ViewBag.CurrentUrl)).Replace(Pattern:"&&CommentPage=([0-9]*)",NewValue:"")+"&&CommentPage="+i)">@i</a></li>*@
+                    <li class="@(Model.CurrentPage==i?"active":"")"><a onclick="ChangeProp('1','@i','@ViewBag.CurrentCommentPage');location.reload();">@i</a></li>
+                }
+            }
+
+        </ul>
+    </div>
+</div>
+
+
+
+<script>
+    function AnswerTo(id) {
+        $('#AskID').val(id);
+        $('#CancelAns').show();
+    }
+</script>

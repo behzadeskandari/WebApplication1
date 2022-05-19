@@ -1,0 +1,378 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    SliderRepository RepSlider = new SliderRepository();
+    ProductRepository RepProduct = new ProductRepository();
+    BrandRepository RepBrand = new BrandRepository();
+}
+
+<div class="col-md-12 hidden-xs Top-Ads">
+    <img src="~/img/1.jpg" style="width:100%;" alt="Alternate Text" />
+</div>
+<div class="col-md-12">
+    <div class="col-md-9 col-sm-12 co-xs-12 LeftBlock">
+        <div class="Slider hidden-xs">
+
+            <ul class="pgwSlider">
+                @{
+                    foreach (var item in RepSlider.GetSlides())
+                    {
+                        <li>
+                            <img src="@item.ImgUrl" alt="@item.Title" data-description="@item.Title">
+                        </li>
+                    }
+                }
+            </ul>
+
+        </div>
+        <div class="hidden-xs hidden-sm dk-services-feature col-md-12 ">
+            <ul>
+                <li class="col-md-3">
+                    <span class="">
+                        <img src="~/img/icons/Calendar.png" />
+                    </span>
+                    <span>تحویل در 7 روز</span>
+                </li>
+                <li class="col-md-2">
+                    <span class="">
+                        <img src="~/img/icons/Invoice-icon.png" />
+                    </span>
+                    <span>تحویل در منزل</span>
+                </li>
+                <li class="col-md-3">
+                    <span class="">
+                        <img src="~/img/icons/guarantee-icon.png" />
+                    </span>
+                    <span>ضمانت اصل بودن</span>
+                </li>
+                <li class="col-md-2">
+                    <span class="">
+                        <img src="~/img/icons/Post-Mail-2-icon.png" />
+                    </span>
+                    <span>تحویل فوری</span>
+                </li>
+                @*<li>
+                        <span class="">
+                            <img src="~/img/icons/Ecommerce-Price-Tag-Usd-icon.png" />
+                        </span>
+                        <span>تضمین بهترین کیفیت</span>
+                    </li>*@
+            </ul>
+        </div>
+
+
+        <div class="col-md-12 ProductsBlock">
+            <div class="Block JustBlog col-md-12">
+                <div class="BodyBlockHeader">
+                    <div class="col-md-6 col-sm-6 hidden-xs" style="text-align:left;">
+                        <a class="hidden-xs" href="#">نمایش همه</a>
+
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 right" style="text-align:right;">
+                        <div class="hidden-xs">جدیدترین ها</div>
+                        <a class="visible-xs" href="#">جدیدترین ها</a>
+                    </div>
+
+                </div>
+                <div class="BodyBlock">
+                    <ul>
+                        @foreach (var item in RepProduct.GetLatestProductList(4))
+                        {
+                            <li class="col-md-3 col-sm-4 col-xs-12">
+                                <a href="/home/Product/@item.Link">
+                                    <img src="@item.ImageUrl" alt="@item.TitleFa" />
+                                    <div>
+                                        <div class="ProductTitle">@item.TitleFa</div>
+                                        <div class="ProductPrice" style="color:green;">
+                                            @item.Price تومان
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </li>
+                        }
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="Block JustBlog col-md-12">
+                <div class="BodyBlockHeader">
+                    <div class="col-md-6 col-sm-6 hidden-xs" style="text-align:left;">
+                        <a class="hidden-xs" href="#">نمایش همه</a>
+
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 right" style="text-align:right;">
+                        <div class="hidden-xs">عنوان بلوک</div>
+                        <a class="visible-xs" href="#">عنوان بلوک</a>
+                    </div>
+
+                </div>
+                <div class="BodyBlock">
+                    <ul>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="Block JustBlog col-md-12">
+                <div class="BodyBlockHeader">
+                    <div class="col-md-6 col-sm-6 hidden-xs" style="text-align:left;">
+                        <a class="hidden-xs" href="#">نمایش همه</a>
+
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 right" style="text-align:right;">
+                        <div class="hidden-xs">اخیر دیده شده</div>
+                        <a class="visible-xs" href="#">عنوان بلوک</a>
+                    </div>
+
+                </div>
+                <div class="BodyBlock">
+                    <ul>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#">
+                                <img src="~/img/ProductImg/1.jpg" alt="Alternate Text" />
+                                <div>
+                                    <div class="ProductTitle">نام محصول</div>
+                                    <div class="ProductPrice" style="color:green;">
+                                        100000 تومان
+                                    </div>
+                                </div>
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-12 col-xs-12 RightBlock">
+        <div class="Block col-md-12">
+            <div class="BlockHeader">
+                عنوان بلوک
+            </div>
+            <div class="BlockBody">
+                بدنه ی بلوک
+            </div>
+            <div class="BlockFooter">
+                <a href="#">بیشتر +</a>
+            </div>
+        </div>
+
+        <div class="Block brands col-md-12" style="border:none;">
+            @foreach (var item in RepBrand.GetBrandList(6))
+            {
+                <div>
+                    <a href="/Home/Brand/@item.Title"><img src="@item.ImageUrl" title="@item.Title" alt="@item.Title" /></a>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

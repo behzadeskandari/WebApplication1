@@ -1,0 +1,17 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model VmProductProp
+@{
+    var Sitemap = (List<VmSiteMap>)ViewBag.SiteMap;
+}
+
+<div>
+    <span class="Price">@Model.SavePrive</span><span>تومان</span>
+</div>
+
+<div style="font-size:12px;color:#ff4c4c;">
+    قیمت کل: <span style="text-decoration:line-through;">@Model.TotalPrice</span><span>تومان</span>
+</div>
